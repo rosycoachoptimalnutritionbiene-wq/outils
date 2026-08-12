@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rose-Marie SOUDAIN — Outils et réalisations</title>
+<meta name="description" content="Assistanat administratif à distance et création d'outils sur mesure — Guadeloupe. Organismes de formation, associations financées, TPE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#12355B; --navy-d:#0A2039; --accent:#1F6FB2; --accent-l:#4A9EE2;
+  --paper:#F6F8FB; --ink:#1B2733; --muted:#5B6B7C; --line:#D9E3ED;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+a{color:inherit}
+
+header{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-d) 100%);color:#fff;
+  padding:clamp(48px,9vw,96px) clamp(20px,5vw,40px) clamp(40px,7vw,72px)}
+.wrap{max-width:960px;margin:0 auto}
+.kicker{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-l);margin-bottom:14px}
+h1{font-size:clamp(1.9rem,5.2vw,3rem);line-height:1.12;font-weight:800;letter-spacing:-.02em;max-width:20ch}
+.lead{margin-top:18px;font-size:clamp(1rem,2.4vw,1.15rem);color:#C6D8E9;max-width:56ch}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-size:.82rem;color:#E3EDF6}
+
+main{max-width:960px;margin:0 auto;padding:clamp(36px,6vw,64px) clamp(20px,5vw,40px) 80px}
+h2{font-size:1.35rem;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin-bottom:26px;max-width:60ch}
+section{margin-bottom:clamp(40px,7vw,64px)}
+
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;
+  display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s,border-color .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(18,53,91,.12);border-color:var(--accent-l)}
+.tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+.card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.card p{font-size:.92rem;color:var(--muted);flex:1}
+.card .go{margin-top:16px;font-size:.88rem;font-weight:600;color:var(--accent)}
+.card .go[data-soon]{color:var(--muted)}
+a.card{text-decoration:none}
+
+.cta{background:var(--navy);color:#fff;border-radius:16px;padding:clamp(26px,5vw,40px);text-align:center}
+.cta h2{color:#fff}
+.cta p{color:#C6D8E9;max-width:52ch;margin:10px auto 22px}
+.btn{display:inline-block;background:var(--accent-l);color:var(--navy-d);font-weight:800;
+  text-decoration:none;padding:13px 26px;border-radius:999px;font-size:.95rem}
+.btn:hover{background:#fff}
+
+footer{border-top:1px solid var(--line);padding:28px 20px 60px;text-align:center;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Guadeloupe · à distance</div>
+    <h1>J'assiste les structures qui doivent rendre des comptes.</h1>
+    <p class="lead">Secrétariat de direction, suivi administratif et dossiers financés — pour les organismes de formation, les associations subventionnées et les TPE. Et les outils sur mesure qui vont avec.</p>
+    <div class="meta">
+      <span class="chip">18 ans d'appui de direction</span>
+      <span class="chip">Dossiers FSE &amp; Qualiopi</span>
+      <span class="chip">Accompagnatrice VAE certifiée</span>
+      <span class="chip">FR · EN · ES</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>Outils en ligne</h2>
+    <p class="sub">Des applications web construites sur mesure, utilisables directement depuis un navigateur. Aucun abonnement, aucune installation.</p>
+    <div class="grid">
+
+      <a class="card" href="flyers/">
+        <div class="tag">Support imprimable</div>
+        <h3>Générateur de flyers A5</h3>
+        <p>Deux modèles d'affiche événementielle. Les dates, lieux et contacts se modifient directement dans la page, puis le flyer s'imprime au format A5.</p>
+        <div class="go">Ouvrir l'outil →</div>
+      </a>
+
+      <a class="card" href="https://rosycoachoptimalnutritionbiene-wq.github.io/Catalogue/">
+        <div class="tag">Tunnel de vente</div>
+        <h3>Catalogue de lots par objectif</h3>
+        <p>Un catalogue en ligne organisé par objectif client plutôt que par produit, avec parcours de commande intégré.</p>
+        <div class="go">Voir le catalogue →</div>
+      </a>
+
+      <div class="card">
+        <div class="tag">Pilotage</div>
+        <h3>Tableau de bord d'activité</h3>
+        <p>Suivi des contacts, des relances et des conversions, avec indicateurs consolidés pour la direction.</p>
+        <div class="go" data-soon>Publication en cours</div>
+      </div>
+
+      <div class="card">
+        <div class="tag">Suivi de dossiers</div>
+        <h3>Suivi des conventions et justificatifs</h3>
+        <p>Cycle annuel de la convention, cycle individuel du bénéficiaire, cycle de renouvellement d'habilitation : trois échéanciers tenus au même endroit.</p>
+        <div class="go" data-soon>Publication en cours</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Ce que je prends en charge</h2>
+    <p class="sub">À distance, au volume dont vous avez besoin : dix, vingt ou trente-cinq heures par mois, ou des missions ponctuelles.</p>
+    <div class="grid">
+      <div class="card"><div class="tag">01</div><h3>Secrétariat de direction</h3><p>Agenda, courriers, préparation des réunions, comptes rendus et procès-verbaux.</p></div>
+      <div class="card"><div class="tag">02</div><h3>Suivi administratif</h3><p>Dossiers clients, classement, archivage numérique, conformité documentaire.</p></div>
+      <div class="card"><div class="tag">03</div><h3>Gestion commerciale</h3><p>Devis, factures, relances, suivi des règlements, commandes et fournisseurs.</p></div>
+      <div class="card"><div class="tag">04</div><h3>Dossiers de financement</h3><p>Montage, pièces justificatives, bilans, préparation aux contrôles.</p></div>
+      <div class="card"><div class="tag">05</div><h3>Ressources humaines</h3><p>Contrats, plannings, plan de formation, dossiers OPCO.</p></div>
+      <div class="card"><div class="tag">06</div><h3>Communication</h3><p>Site internet, réseaux sociaux, notes internes, organisation d'événements.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2>Un échange de 30 minutes suffit</h2>
+      <p>Pour savoir si je peux vous aider, et à quel volume. Sans engagement, et le premier mois est un essai.</p>
+      <a class="btn" href="mailto:soudainrosemarie782@gmail.com?subject=Demande%20d'information%20-%20assistanat%20administratif">Me contacter</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Rose-Marie SOUDAIN · Petit-Bourg, Guadeloupe · 0691 25 22 69<br>
+  SIRET 839 447 109 00019
+</footer>
+
+</body>
+</html>

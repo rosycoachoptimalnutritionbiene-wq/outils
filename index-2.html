@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Générateur de flyers A5 — Écosystème Coach Rosy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Karla:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@page{size:A5 portrait;margin:0}
+:root{
+  --nuit:#0B2E1F;--cacao:#123D2A;--safran:#F2B705;--rouge:#C8102E;
+  --ecume:#4FB3A5;--sable:#F7F1E6;--sable-d:#C9C0AE;--encre:#0B2E1F;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Karla',system-ui,sans-serif;background:#0f1a14;color:var(--sable);
+     min-height:100vh;padding:0 0 60px}
+
+/* ══ barre d'outils ══ */
+#tb{position:sticky;top:0;z-index:30;background:rgba(11,46,31,.96);
+    backdrop-filter:blur(10px);border-bottom:1px solid rgba(247,241,230,.14);
+    padding:12px clamp(12px,3vw,26px);display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.tbt{background:none;border:1px solid rgba(247,241,230,.24);color:var(--sable-d);
+     border-radius:9px;padding:8px 13px;cursor:pointer;font-family:'Space Mono',monospace;
+     font-size:.7rem;letter-spacing:.05em;transition:.18s}
+.tbt:hover,.tbt:focus-visible{background:var(--safran);color:var(--nuit);border-color:var(--safran);outline:none}
+.tbt.on{background:var(--ecume);border-color:var(--ecume);color:var(--nuit)}
+.tbt.sel{background:var(--sable);color:var(--nuit);border-color:var(--sable)}
+#tbi{margin-left:auto;font-family:'Space Mono',monospace;font-size:.68rem;color:var(--sable-d);letter-spacing:.05em}
+
+/* ══ plan de travail ══ */
+#work{display:flex;justify-content:center;padding:clamp(16px,4vw,40px) 14px}
+.fw{display:none}.fw.on{display:block}
+
+.flyer{
+  width:min(94vw,470px);aspect-ratio:148/210;
+  container-type:inline-size;
+  position:relative;overflow:hidden;border-radius:6px;
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.mad{
+  background-color:var(--cacao);
+  background-image:
+    repeating-linear-gradient(90deg,rgba(242,183,5,.92) 0 2.1cqi,transparent 2.1cqi 10cqi),
+    repeating-linear-gradient(90deg,rgba(200,16,46,.80) 4.6cqi 6.4cqi,transparent 6.4cqi 10cqi),
+    repeating-linear-gradient(90deg,rgba(79,179,165,.55) 7.7cqi 8.6cqi,transparent 8.6cqi 10cqi),
+    repeating-linear-gradient(0deg,rgba(242,183,5,.50) 0 2.1cqi,transparent 2.1cqi 10cqi),
+    repeating-linear-gradient(0deg,rgba(247,241,230,.42) 4.6cqi 5.7cqi,transparent 5.7cqi 10cqi);
+}
+.fin{position:absolute;inset:0;display:flex;flex-direction:column;padding:5cqi 5.6cqi 4.6cqi}
+.band{position:absolute;left:0;right:0;top:0;height:2.6cqi}
+.band.bot{top:auto;bottom:0}
+
+.f-eyeb{font-family:'Space Mono',monospace;font-size:2.35cqi;letter-spacing:.16em;
+        text-transform:uppercase;margin-bottom:2cqi}
+.f-h1{font-family:'Archivo Black',sans-serif;font-size:8.2cqi;line-height:.88;letter-spacing:-.03em}
+.f-h1 .l2{display:block;font-size:5.2cqi;margin-top:.8cqi}
+.f-tag{font-size:3.15cqi;line-height:1.3;margin-top:1.9cqi;max-width:28ch}
+.f-tag b{font-weight:800}
+
+.f-hl{margin:2.6cqi 0 2.2cqi;padding:2.3cqi 2.8cqi;border-radius:2.4cqi;font-size:2.95cqi;
+      line-height:1.3;font-weight:800;display:flex;gap:2.2cqi;align-items:center}
+.f-hl .big{font-family:'Archivo Black',sans-serif;font-size:4cqi;line-height:1;letter-spacing:-.02em}
+
+.f-ul{list-style:none;margin-top:1cqi}
+.f-ul li{font-size:2.8cqi;line-height:1.3;padding:.7cqi 0;display:flex;gap:2cqi;align-items:flex-start}
+.f-ul li:before{content:'';width:1.7cqi;height:1.7cqi;border-radius:.4cqi;flex-shrink:0;margin-top:.62em}
+
+.f-when{margin-top:auto;padding-top:2cqi;display:grid;grid-template-columns:1fr 1fr;gap:1.6cqi}
+.wbx{border-radius:2.2cqi;padding:1.9cqi 2.3cqi}
+.wbx.wide{grid-column:1/-1}
+.wbx .k{font-family:'Space Mono',monospace;font-size:2.35cqi;letter-spacing:.15em;
+        text-transform:uppercase;opacity:.72;margin-bottom:.7cqi}
+.wbx .v{font-family:'Archivo Black',sans-serif;font-size:3.6cqi;line-height:1.05;letter-spacing:-.02em}
+.wbx.wide .v{font-size:3.05cqi}
+
+.f-cta{margin-top:1.5cqi;font-size:2.6cqi;line-height:1.3;font-weight:800;text-align:center;
+       padding:1.7cqi;border-radius:2cqi}
+.f-foot{margin-top:1.4cqi;font-size:1.95cqi;line-height:1.42;text-align:center;opacity:.82}
+.f-foot b{font-weight:800}
+
+/* ── FLYER 1 · MOMENT INTENSE (clair) ── */
+#f1 .fin{background:var(--sable);color:var(--encre)}
+#f1 .f-eyeb{color:#0E7C5A}
+#f1 .f-h1{color:var(--encre)}
+#f1 .f-h1 .l2{color:#0E7C5A}
+#f1 .f-tag{color:#3a4a3f}
+#f1 .f-hl{background:linear-gradient(100deg,#0E7C5A,#4FB3A5);color:#fff}
+#f1 .f-ul li{color:#2b3a30}
+#f1 .f-ul li:before{background:var(--safran)}
+#f1 .wbx{background:rgba(11,46,31,.055);border:.35cqi solid rgba(11,46,31,.16)}
+#f1 .wbx .v{color:var(--encre)}
+#f1 .f-cta{background:var(--encre);color:var(--sable)}
+#f1 .f-foot{color:#4a5a4f}
+
+/* ── FLYER 2 · MEGAWALK (sombre) ── */
+#f2 .fin{background:var(--nuit);color:var(--sable);
+  background-image:radial-gradient(ellipse 80% 40% at 78% 4%,rgba(242,183,5,.18),transparent 68%)}
+#f2 .f-eyeb{color:var(--safran)}
+#f2 .f-h1{color:var(--sable)}
+#f2 .f-h1 .l2{color:var(--safran)}
+#f2 .f-tag{color:var(--sable-d)}
+#f2 .f-hl{background:var(--safran);color:var(--nuit)}
+#f2 .f-ul li{color:var(--sable-d)}
+#f2 .f-ul li:before{background:var(--ecume)}
+#f2 .wbx{background:rgba(247,241,230,.075);border:.35cqi solid rgba(247,241,230,.2)}
+#f2 .wbx .v{color:var(--sable)}
+#f2 .f-cta{background:var(--sable);color:var(--nuit)}
+#f2 .f-foot{color:var(--sable-d)}
+
+/* édition */
+.ed{border-bottom:.35cqi dashed transparent;border-radius:.5cqi;transition:.18s}
+body.edit .ed{border-bottom-color:var(--ecume);background:rgba(79,179,165,.2);cursor:text}
+.ed:focus{outline:.5cqi solid var(--ecume);outline-offset:.4cqi}
+
+#tst{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(14px);
+  background:var(--safran);color:var(--nuit);padding:9px 18px;border-radius:26px;
+  font-weight:800;font-size:.8rem;opacity:0;pointer-events:none;transition:.26s;z-index:40}
+#tst.on{opacity:1;transform:translateX(-50%)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+@media print{
+  body{background:#fff;padding:0}
+  #tb,#tst{display:none!important}
+  #work{padding:0;display:block}
+  .fw{display:none!important}
+  .fw.on{display:block!important}
+  .flyer{width:148mm;height:208mm;aspect-ratio:auto;box-shadow:none;border-radius:0;
+         page-break-after:always;margin:0}
+  .fin{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mad,.f-hl,.f-cta,.wbx,#f1 .fin,#f2 .fin{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div id="tb">
+  <button class="tbt sel" id="b1" onclick="pick(1)">✨ MOMENT INTENSE</button>
+  <button class="tbt" id="b2" onclick="pick(2)">🚶 MEGAWALK</button>
+  <button class="tbt" id="bed" onclick="edit()">✎ Personnaliser</button>
+  <button class="tbt" onclick="window.print()">🖨 Imprimer / PDF</button>
+  <div id="tbi">Format A5 · 148 × 210 mm</div>
+</div>
+
+<div id="work">
+
+  <!-- ══════════ FLYER 1 · MOMENT INTENSE ══════════ -->
+  <div class="fw on" id="w1">
+  <div class="flyer" id="f1">
+    <div class="band mad"></div>
+    <div class="fin">
+      <div class="f-eyeb">Offert aux membres de <span class="ed" data-k="a1">[nom de l'association]</span></div>
+      <h1 class="f-h1">MOMENT<br>INTENSE<span class="l2">« Je prends soin de moi »</span></h1>
+      <p class="f-tag">Un vrai temps pour vous, <b>offert par votre association</b>. Quarante-cinq minutes, sur place, sans rien à prévoir.</p>
+
+      <div class="f-hl"><span class="big">SCAN</span><span>Votre diagnostic de peau personnalisé, offert à chaque participante et participant</span></div>
+
+      <ul class="f-ul">
+        <li>Analyse de votre peau et fiche personnelle remise</li>
+        <li>Rituel de soin en démonstration, à essayer</li>
+        <li>Conseils adaptés à votre peau, pas à un catalogue</li>
+        <li>Dégustation bien-être pour finir</li>
+      </ul>
+
+      <div class="f-when">
+        <div class="wbx"><div class="k">Date</div><div class="v ed" data-k="d1">…… / …… / 2026</div></div>
+        <div class="wbx"><div class="k">Heure</div><div class="v ed" data-k="h1">……h……</div></div>
+        <div class="wbx wide"><div class="k">Lieu</div><div class="v ed" data-k="l1">[lieu de la réunion]</div></div>
+      </div>
+
+      <div class="f-cta">Places limitées à <span class="ed" data-k="n1">10</span> personnes — réservez auprès de <span class="ed" data-k="c1">[contact]</span></div>
+
+      <div class="f-foot"><b>Écosystème Coach Rosy</b><br>
+        Partenaires : Association Ô INSERTION &amp; Institut MEGAFORM' Petit-Bourg<br>
+        Atelier entièrement gratuit · aucune vente sur place</div>
+    </div>
+    <div class="band bot mad"></div>
+  </div>
+  </div>
+
+  <!-- ══════════ FLYER 2 · MEGAWALK ══════════ -->
+  <div class="fw" id="w2">
+  <div class="flyer" id="f2">
+    <div class="band mad"></div>
+    <div class="fin">
+      <div class="f-eyeb">Gratuit · ouvert à tous · <span class="ed" data-k="a2">[quartier / ville]</span></div>
+      <h1 class="f-h1">MEGA<br>WALK<span class="l2">mon Quartier, ma Ville</span></h1>
+      <p class="f-tag">On marche ensemble, on bouge, on partage. <b>Venez comme vous êtes</b>, avec qui vous voulez.</p>
+
+      <div class="f-hl"><span class="big">3-5 km</span><span>Marche accessible à tous, suivie d'une collation bien-être offerte</span></div>
+
+      <ul class="f-ul">
+        <li>Échauffement puis marche conviviale en boucle</li>
+        <li>Collation bien-être offerte à l'arrivée</li>
+        <li>Séance MEGAFORM' de 20 minutes, sans matériel</li>
+        <li>Familles, voisins, enfants : tout le monde est bienvenu</li>
+      </ul>
+
+      <div class="f-when">
+        <div class="wbx"><div class="k">Date</div><div class="v ed" data-k="d2">…… / …… / 2026</div></div>
+        <div class="wbx"><div class="k">Départ</div><div class="v ed" data-k="h2">……h……</div></div>
+        <div class="wbx wide"><div class="k">Rendez-vous</div><div class="v ed" data-k="l2">[point de départ]</div></div>
+      </div>
+
+      <div class="f-cta">Inscription gratuite auprès de <span class="ed" data-k="c2">[contact]</span> — prévoyez baskets, casquette et bouteille d'eau</div>
+
+      <div class="f-foot"><b>Écosystème Coach Rosy</b><br>
+        Partenaires : Association Ô INSERTION &amp; Institut MEGAFORM' Petit-Bourg<br>
+        Marche encadrée · participation libre et gratuite</div>
+    </div>
+    <div class="band bot mad"></div>
+  </div>
+  </div>
+
+</div>
+
+<div id="tst"></div>
+
+<script>
+const S={};
+try{Object.assign(S,JSON.parse(localStorage.getItem('rosy-flyers')||'{}'))}catch(e){}
+document.querySelectorAll('.ed').forEach(el=>{
+  const v=S[el.dataset.k];if(v!==undefined)el.textContent=v;
+});
+
+let sel=1,ed=false;
+function pick(n){
+  sel=n;
+  document.getElementById('w1').classList.toggle('on',n===1);
+  document.getElementById('w2').classList.toggle('on',n===2);
+  document.getElementById('b1').classList.toggle('sel',n===1);
+  document.getElementById('b2').classList.toggle('sel',n===2);
+}
+function edit(){
+  ed=!ed;
+  document.body.classList.toggle('edit',ed);
+  const b=document.getElementById('bed');
+  b.classList.toggle('on',ed);b.textContent=ed?'✓ Terminer':'✎ Personnaliser';
+  document.querySelectorAll('.ed').forEach(el=>{
+    el.contentEditable=ed?'true':'false';
+    if(ed&&!el._b){el._b=1;
+      el.addEventListener('blur',()=>{S[el.dataset.k]=el.textContent.trim();
+        try{localStorage.setItem('rosy-flyers',JSON.stringify(S))}catch(e){}});
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}});
+    }
+  });
+  toast(ed?'Clique les zones surlignées':'Enregistré sur cet appareil');
+}
+function toast(m){const t=document.getElementById('tst');t.textContent=m;t.classList.add('on');
+  clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('on'),2200)}
+addEventListener('keydown',e=>{
+  if(ed&&e.target.classList?.contains('ed'))return;
+  if(e.key==='1')pick(1);if(e.key==='2')pick(2);
+});
+</script>
+</body>
+</html>
