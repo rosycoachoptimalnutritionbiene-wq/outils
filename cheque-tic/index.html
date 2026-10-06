@@ -1,0 +1,429 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chèque TIC Web-Entreprises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FBF8FC; --surface:#FFFFFF; --soft:#F3ECF7; --ink:#1E1029; --muted:#5E5068; --line:#E4D9EA;
+  --violet:#5A2A84; --fuchsia:#C8196F; --orange:#E9791A; --vert:#15885B; --vert-soft:#E3F4EC; --orange-soft:#FDF0E3;
+  --on-accent:#FFFFFF; --shadow:0 18px 40px -24px rgba(58,20,84,.45);
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#140B1B; --surface:#1E1228; --soft:#281934; --ink:#F4ECF8; --muted:#B9A9C4; --line:#3A2848;
+    --violet:#B98AE6; --fuchsia:#FF5AA5; --orange:#FFA24D; --vert:#4CD497; --vert-soft:#12301F; --orange-soft:#33210F;
+    --on-accent:#1A0B20; --shadow:0 18px 40px -24px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#140B1B; --surface:#1E1228; --soft:#281934; --ink:#F4ECF8; --muted:#B9A9C4; --line:#3A2848;
+  --violet:#B98AE6; --fuchsia:#FF5AA5; --orange:#FFA24D; --vert:#4CD497; --vert-soft:#12301F; --orange-soft:#33210F;
+  --on-accent:#1A0B20; --shadow:0 18px 40px -24px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:20px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.02em}
+h3{font-size:21px;font-weight:700}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--fuchsia)}
+.lead{color:var(--muted);max-width:60ch}
+section{padding-block:64px;border-top:1px solid var(--line)}
+.num{font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 16px/1 var(--body);padding:16px 22px;border-radius:999px;border:2px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,.pack:has(input:focus-visible),.opt:has(input:focus-visible),.yn label:has(input:focus-visible) span{outline:3px solid var(--orange);outline-offset:3px}
+.btn-main{background:var(--fuchsia);color:var(--on-accent)}
+.btn-ghost{border-color:var(--violet);color:var(--violet);background:transparent}
+.btn-wa{background:var(--vert);color:var(--on-accent)}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:18px}
+.brand{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.01em}
+.brand b{color:var(--fuchsia)}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.tel{font-weight:700;font-size:15px;color:var(--violet)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:40px 64px}
+.hero h1{font-size:clamp(38px,6vw,66px);font-weight:800;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--fuchsia)}
+.hero .lead{margin-top:20px;font-size:19px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;font-size:14px;color:var(--muted)}
+.trust span::before{content:"✓ ";color:var(--vert);font-weight:700}
+
+/* the cheque */
+.cheque{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:22px 22px 18px;position:relative;overflow:hidden}
+.cheque::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--violet) 0 25%,var(--fuchsia) 25% 50%,var(--orange) 50% 75%,var(--vert) 75%)}
+.cheque-top{display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:6px}
+.cheque-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px dashed var(--line);padding-block:12px}
+.cheque-line span{color:var(--muted);font-size:15px}
+.cheque-line strong{font-family:var(--display);font-size:24px;white-space:nowrap}
+.cheque-line.pay strong{font-size:44px;color:var(--fuchsia)}
+.split{display:flex;height:14px;border-radius:99px;overflow:hidden;margin-top:16px;background:var(--soft)}
+.split i{display:block;height:100%}
+.split .r{background:var(--violet);width:80%}
+.split .c{background:var(--orange);width:20%}
+.legend{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:8px}
+.cheque-foot{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* simulator */
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px;align-items:start}
+.packs{display:grid;gap:12px}
+.pack{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer}
+.pack input{accent-color:var(--fuchsia);width:20px;height:20px;margin:0}
+.pack .name{font-weight:700}
+.pack .who{font-size:14px;color:var(--muted)}
+.pack .price{font-family:var(--display);font-weight:700;font-size:20px}
+.pack:has(input:checked){border-color:var(--fuchsia);background:var(--soft)}
+.opt{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:2px dashed var(--line);border-radius:12px;padding:16px;cursor:pointer}
+.opt input{accent-color:var(--vert);width:20px;height:20px;margin:3px 0 0}
+.opt:has(input:checked){border-style:solid;border-color:var(--vert);background:var(--vert-soft)}
+.result{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow);position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+.result dl{display:grid;grid-template-columns:1fr auto;gap:10px 16px;margin:16px 0 0}
+.result dt{color:var(--muted)}
+.result dd{margin:0;font-weight:700;text-align:right}
+.result .big{border-top:2px solid var(--ink);padding-top:14px;margin-top:6px;font-size:18px;color:var(--ink);font-weight:700}
+.result .big + dd{font-family:var(--display);font-size:40px;color:var(--fuchsia);border-top:2px solid var(--ink);padding-top:6px;margin-top:6px}
+.result .note{font-size:13px;color:var(--muted);margin-top:14px}
+.result ul{margin:16px 0 0;padding-left:18px;font-size:15px;color:var(--muted)}
+
+/* eligibility */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,32px);margin-top:32px;box-shadow:var(--shadow)}
+.q{display:grid;grid-template-columns:1fr auto;gap:12px 24px;align-items:center;padding-block:16px;border-bottom:1px solid var(--line)}
+.q:last-of-type{border-bottom:0}
+.q p{font-weight:600}
+.q small{display:block;color:var(--muted);font-weight:400;font-size:14px}
+.yn{display:flex;gap:6px}
+.yn label{position:relative}
+.yn input{position:absolute;opacity:0;pointer-events:none}
+.yn span{display:inline-block;min-width:64px;text-align:center;padding:10px 14px;border-radius:999px;border:2px solid var(--line);font-weight:700;font-size:15px;cursor:pointer}
+.yn input:checked + span.y{background:var(--vert);border-color:var(--vert);color:var(--on-accent)}
+.yn input:checked + span.n{background:var(--orange);border-color:var(--orange);color:var(--on-accent)}
+.verdict{margin-top:20px;border-radius:12px;padding:20px;display:grid;gap:12px}
+.verdict.wait{background:var(--soft);color:var(--muted)}
+.verdict.ok{background:var(--vert-soft);border:2px solid var(--vert)}
+.verdict.no{background:var(--orange-soft);border:2px solid var(--orange)}
+.verdict h3{font-size:22px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fields label{display:grid;gap:4px;font-size:14px;font-weight:600}
+.fields input{font:inherit;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+
+/* steps */
+.steps{list-style:none;padding:0;margin:32px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:s}
+.steps li{counter-increment:s;padding-top:16px;border-top:3px solid var(--violet)}
+.steps li:nth-child(2){border-color:var(--fuchsia)}
+.steps li:nth-child(3){border-color:var(--orange)}
+.steps li:nth-child(4){border-color:var(--vert)}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--display);font-weight:800;font-size:28px;color:var(--muted);display:block}
+.steps strong{display:block;margin-top:6px}
+.steps p{font-size:15px;color:var(--muted);margin-top:6px}
+.who-tag{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-top:10px;color:var(--violet)}
+
+/* offers */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.offer{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.offer.star{border:2px solid var(--fuchsia)}
+.offer .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--fuchsia)}
+.offer .rac{font-family:var(--display);font-size:44px;font-weight:800;line-height:1}
+.offer .rac small{font-size:15px;font-family:var(--body);font-weight:600;color:var(--muted)}
+.offer .full{font-size:14px;color:var(--muted)}
+.offer ul{margin:0;padding-left:18px;font-size:15px;display:grid;gap:6px}
+
+/* guarantee */
+.guarantee{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--soft);border-radius:16px;padding:clamp(22px,4vw,40px);margin-top:8px}
+.seal{width:132px;height:132px;border-radius:50%;border:3px solid var(--vert);display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:800;color:var(--vert);line-height:1.05;padding:12px}
+.seal b{font-size:40px;display:block}
+
+/* split roles */
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.role{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.role ul{margin:12px 0 0;padding-left:18px;display:grid;gap:6px}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding-block:16px}
+summary{font-weight:700;cursor:pointer;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";font-family:var(--display);font-size:24px;color:var(--fuchsia);line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);max-width:70ch}
+.faq{margin-top:24px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.card-c{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px}
+.card-c .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:10px}
+.card-c .row:last-child{border:0;padding:0}
+.card-c span{color:var(--muted);font-size:14px}
+.copy{font:600 13px var(--body);border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:99px;padding:6px 12px;cursor:pointer}
+footer{padding-block:32px 48px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:8px}
+
+@media (max-width:860px){
+  .hero,.sim,.contact,.roles{grid-template-columns:1fr}
+  .offers{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .result{position:static}
+}
+@media (max-width:520px){
+  body{font-size:16px;padding-inline:16px}
+  .q{grid-template-columns:1fr}
+  .fields{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .guarantee{grid-template-columns:1fr;justify-items:start}
+  .cheque-line.pay strong{font-size:36px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head><body>
+
+<div class="wrap">
+<header>
+  <div class="brand">Agence Web-Entreprises<b>.Com</b><small>Petit-Bourg · Guadeloupe</small></div>
+  <div class="tel num">+590 691 25 22 69</div>
+</header>
+
+<div class="hero">
+  <div>
+    <p class="eyebrow">Chèque TIC · Région Guadeloupe</p>
+    <h1>Votre site internet, <em>financé à 80 %</em> par la Région.</h1>
+    <p class="lead">Un site vitrine de 1 500 € vous revient à 300 €. Nous créons votre site et nous vous guidons pas à pas dans votre dossier de subvention. Si l'aide est refusée, vous ne payez rien.</p>
+    <div class="cta-row">
+      <a class="btn btn-main" href="#eligibilite">Tester mon éligibilité · 2 min</a>
+      <a class="btn btn-ghost" href="#simulateur">Calculer mon reste à charge</a>
+    </div>
+    <div class="trust"><span>Prix affichés</span><span>Commande sous condition</span><span>Agence basée en Guadeloupe</span></div>
+  </div>
+  <div class="cheque" aria-label="Exemple de financement du pack Présence Locale">
+    <div class="cheque-top"><span>Exemple · Pack Présence Locale</span><span>Net de TVA</span></div>
+    <div class="cheque-line"><span>Prix du site</span><strong class="num">1 500 €</strong></div>
+    <div class="cheque-line"><span>Pris en charge par la Région (80 %)</span><strong class="num">− 1 200 €</strong></div>
+    <div class="cheque-line pay"><span>Vous payez</span><strong class="num">300 €</strong></div>
+    <div class="split" aria-hidden="true"><i class="r"></i><i class="c"></i></div>
+    <div class="legend"><span>Région 80 %</span><span>Vous 20 %</span></div>
+    <p class="cheque-foot">Sous réserve d'acceptation de votre dossier par la Région Guadeloupe.</p>
+  </div>
+</div>
+
+<section id="simulateur">
+  <p class="eyebrow">Simulateur</p>
+  <h2>Combien vous coûte votre site ?</h2>
+  <p class="lead" style="margin-top:12px">Choisissez un pack. Le calcul applique le taux de 80 % du Chèque TIC pour les prestations web et sécurité.</p>
+  <div class="sim">
+    <div class="packs" role="radiogroup" aria-label="Choix du pack">
+      <label class="pack" for="p1"><input type="radio" name="pack" id="p1" value="1500" data-name="Présence Locale" checked><div><div class="name">Présence Locale</div><div class="who">Artisans, indépendants, services</div></div><div class="price num">1 500 €</div></label>
+      <label class="pack" for="p2"><input type="radio" name="pack" id="p2" value="2500" data-name="Vitrine Pro"><div><div class="name">Vitrine Pro</div><div class="who">Professions libérales, gîtes, restaurants</div></div><div class="price num">2 500 €</div></label>
+      <label class="pack" for="p3"><input type="radio" name="pack" id="p3" value="4500" data-name="Boutique Connectée"><div><div class="name">Boutique Connectée</div><div class="who">Commerçants, créateurs, concept stores</div></div><div class="price num">4 500 €</div></label>
+      <label class="opt" for="opt"><input type="checkbox" id="opt" value="600"><div><div class="name" style="font-weight:700">+ Option Sérénité · 600 €</div><div class="who" style="font-size:14px;color:var(--muted)">Sauvegarde automatique 12 mois, protection du site, mini-audit sécurité, formation 1 h. Aussi financée à 80 %.</div></div></label>
+    </div>
+    <div class="result" aria-live="polite">
+      <p class="eyebrow" id="r-name">Présence Locale</p>
+      <dl class="num">
+        <dt>Prix du projet</dt><dd id="r-total">1 500 €</dd>
+        <dt>Aide Région (80 %)</dt><dd id="r-aid">1 200 €</dd>
+        <dt class="big">Votre reste à charge</dt><dd id="r-rac">300 €</dd>
+      </dl>
+      <ul id="r-list"></ul>
+      <p class="note">Montants nets, TVA non applicable (art. 293 B du CGI). Aide plafonnée à 10 000 € par entreprise et par an.</p>
+      <div class="cta-row" style="margin-top:18px"><a class="btn btn-main" href="#eligibilite">Vérifier mon éligibilité</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="eligibilite">
+  <p class="eyebrow">Test d'éligibilité</p>
+  <h2>Votre entreprise peut-elle en bénéficier ?</h2>
+  <p class="lead" style="margin-top:12px">Cinq questions, d'après les conditions publiées du dispositif. Le résultat est indicatif : la décision appartient à la Région.</p>
+  <form class="quiz" id="quiz" novalidate>
+    <div class="q"><p>Votre entreprise est-elle installée en Guadeloupe ?</p><div class="yn"><label><input type="radio" name="q1" id="q1y" value="1"><span class="y">Oui</span></label><label><input type="radio" name="q1" id="q1n" value="0"><span class="n">Non</span></label></div></div>
+    <div class="q"><p>Est-elle immatriculée depuis plus d'un an ?<small>SIRET, Kbis ou répertoire des métiers.</small></p><div class="yn"><label><input type="radio" name="q2" id="q2y" value="1"><span class="y">Oui</span></label><label><input type="radio" name="q2" id="q2n" value="0"><span class="n">Non</span></label></div></div>
+    <div class="q"><p>Êtes-vous à jour de vos impôts et cotisations sociales ?<small>Il faudra fournir les attestations.</small></p><div class="yn"><label><input type="radio" name="q3" id="q3y" value="1"><span class="y">Oui</span></label><label><input type="radio" name="q3" id="q3n" value="0"><span class="n">Non</span></label></div></div>
+    <div class="q"><p>Avez-vous déjà reçu un Chèque TIC cette année ?</p><div class="yn"><label><input type="radio" name="q4" id="q4n" value="1"><span class="y">Non</span></label><label><input type="radio" name="q4" id="q4y" value="0"><span class="n">Oui</span></label></div></div>
+    <div class="q"><p>Votre projet est-il encore à démarrer ?<small>Rien de commandé ni payé pour ce site.</small></p><div class="yn"><label><input type="radio" name="q5" id="q5y" value="1"><span class="y">Oui</span></label><label><input type="radio" name="q5" id="q5n" value="0"><span class="n">Non</span></label></div></div>
+    <div class="verdict wait" id="verdict"><p>Répondez aux 5 questions pour voir votre résultat.</p></div>
+  </form>
+</section>
+
+<section id="etapes">
+  <p class="eyebrow">Déroulé</p>
+  <h2>De l'appel à la mise en ligne</h2>
+  <ol class="steps">
+    <li><strong>Bilan digital offert</strong><p>30 minutes pour cerner votre besoin et choisir le pack.</p><span class="who-tag">Avec nous</span></li>
+    <li><strong>Devis sous condition</strong><p>Devis détaillé, note de projet pré-rédigée, liste des pièces.</p><span class="who-tag">Sous 48 h</span></li>
+    <li><strong>Dépôt du dossier</strong><p>Vous déposez sur le portail de la Région avec vos 3 devis.</p><span class="who-tag">Vous, guidé</span></li>
+    <li><strong>Accord de la Région</strong><p>Instruction de 1 à 3 mois. Rien ne démarre avant.</p><span class="who-tag">Région</span></li>
+    <li><strong>Création et formation</strong><p>Site en ligne, formation à la prise en main, fiche Google.</p><span class="who-tag">3 à 6 semaines</span></li>
+  </ol>
+</section>
+
+<section id="offres">
+  <p class="eyebrow">Les packs</p>
+  <h2>Ce que contient chaque pack</h2>
+  <div class="offers">
+    <article class="offer">
+      <span class="tag">Présence Locale</span>
+      <div class="rac num">300 €<small> pour vous</small></div>
+      <div class="full num">Prix 1 500 € · aide 1 200 €</div>
+      <ul><li>Site 3 pages adapté au mobile</li><li>Domaine, hébergement et SSL 1 an</li><li>Fiche Google optimisée</li><li>Bouton WhatsApp et formulaire</li><li>Formation 1 h</li></ul>
+    </article>
+    <article class="offer star">
+      <span class="tag">Vitrine Pro · le plus demandé</span>
+      <div class="rac num">500 €<small> pour vous</small></div>
+      <div class="full num">Prix 2 500 € · aide 2 000 €</div>
+      <ul><li>Site 5 à 7 pages</li><li>Rédaction de vos textes</li><li>Référencement local Guadeloupe</li><li>Prise de rendez-vous ou demande de devis</li><li>Domaine, hébergement, SSL 1 an</li><li>Formation 2 h</li></ul>
+    </article>
+    <article class="offer">
+      <span class="tag">Boutique Connectée</span>
+      <div class="rac num">900 €<small> pour vous</small></div>
+      <div class="full num">Prix 4 500 € · aide 3 600 €</div>
+      <ul><li>Boutique jusqu'à 50 produits</li><li>Paiement sécurisé</li><li>Livraison Guadeloupe et retrait en magasin</li><li>Domaine, hébergement, SSL 1 an</li><li>Formation 3 h</li></ul>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="guarantee">
+    <div class="seal"><div><b>0 €</b>si refus</div></div>
+    <div>
+      <h2 style="font-size:clamp(24px,3.4vw,34px)">Aide refusée, commande annulée.</h2>
+      <p class="lead" style="margin-top:12px">Notre bon de commande est signé sous condition suspensive : aucun travail ne commence et aucun paiement n'est demandé avant l'accord de la Région. En cas de refus, la commande est annulée, sans frais.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Transparence</p>
+  <h2>Qui fait quoi dans votre dossier</h2>
+  <div class="roles">
+    <div class="role"><h3>Nous nous chargeons de</h3><ul><li>Définir votre projet et le chiffrer</li><li>Pré-rédiger la note de projet</li><li>Vous donner la liste des pièces à réunir</li><li>Vous accompagner pendant le dépôt en ligne</li><li>Créer, mettre en ligne et vous former</li></ul></div>
+    <div class="role"><h3>Vous vous chargez de</h3><ul><li>Demander 2 autres devis, comme l'exige le dispositif</li><li>Choisir librement votre prestataire</li><li>Réunir Kbis, attestations et relevés bancaires</li><li>Déposer le dossier à votre nom sur le portail de la Région</li></ul></div>
+  </div>
+</section>
+
+<section id="faq">
+  <p class="eyebrow">Questions fréquentes</p>
+  <h2>Avant de vous lancer</h2>
+  <div class="faq">
+    <details><summary>Qu'est-ce que le Chèque TIC ?</summary><p>Une aide de la Région Guadeloupe, cofinancée par l'Union européenne (FEDER), pour la transition numérique des entreprises du territoire. Elle finance 80 % des projets de présence web et de sécurité, et 40 % du matériel et des logiciels, jusqu'à 10 000 € d'aide.</p></details>
+    <details><summary>Pourquoi faut-il 3 devis ?</summary><p>Le règlement demande une mise en concurrence pour chaque prestation. Vous sollicitez vous-même d'autres prestataires, puis vous choisissez librement. Nous vous remettons une grille pour comparer les offres.</p></details>
+    <details><summary>Combien de temps faut-il compter ?</summary><p>L'instruction par la Région prend en général de 1 à 3 mois. Une fois l'accord reçu, votre site est livré en 3 à 6 semaines selon le pack.</p></details>
+    <details><summary>Mon entreprise a moins d'un an. Que faire ?</summary><p>Le dispositif est réservé aux entreprises immatriculées depuis au moins un an. Contactez-nous : nous pouvons préparer votre projet pour la date anniversaire de votre immatriculation.</p></details>
+    <details><summary>Et après la première année ?</summary><p>Le domaine et l'hébergement sont inclus 12 mois. Ensuite, vous choisissez de renouveler seul ou de nous confier la maintenance.</p></details>
+    <details><summary>Êtes-vous un prestataire agréé par la Région ?</summary><p>Il n'existe pas d'agrément : chaque entreprise choisit librement son prestataire. Nous sommes une agence indépendante installée à Petit-Bourg.</p></details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <div>
+      <p class="eyebrow">On en parle ?</p>
+      <h2>Réservez votre bilan digital offert</h2>
+      <p class="lead" style="margin-top:12px">30 minutes par téléphone ou en visio, le mardi, mercredi ou jeudi matin. Vous repartez avec votre pack, votre reste à charge et la liste des pièces à réunir.</p>
+      <div class="cta-row">
+        <a class="btn btn-main" href="https://tidycal.com/web-entreprises/bilan-digital" target="_blank" rel="noopener">Choisir un créneau</a>
+        <a class="btn btn-wa" id="wa-main" href="https://wa.me/590691252269" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+      </div>
+    </div>
+    <div class="card-c">
+      <div class="row"><div><span>Rose-Marie Soudain</span><div style="font-weight:700">Agence Web-Entreprises.Com</div></div></div>
+      <div class="row"><div><span>Téléphone et WhatsApp</span><div class="num" style="font-weight:700">+590 691 25 22 69</div></div><button class="copy" type="button" data-copy="+590691252269">Copier</button></div>
+      <div class="row"><div><span>E-mail</span><div style="font-weight:700">contact@web-entreprises.com</div></div><button class="copy" type="button" data-copy="contact@web-entreprises.com">Copier</button></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Agence Web-Entreprises.Com · Rose-Marie Soudain, entrepreneur individuel · Petit-Bourg, Guadeloupe · SIRET 940 169 519 00011 · TVA non applicable, art. 293 B du CGI.</p>
+  <p>Prestataire indépendant. Le Chèque TIC est un dispositif de la Région Guadeloupe ; l'attribution de l'aide relève de sa seule décision. Conditions indicatives établies d'après les informations publiques du dispositif (mise à jour juin 2026).</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var fmt = function(n){ return n.toLocaleString('fr-FR').replace(/ | /g,' ') + ' €'; };
+  var contents = {
+    "Présence Locale": ["Site 3 pages mobile","Domaine, hébergement, SSL 1 an","Fiche Google optimisée","Formation 1 h"],
+    "Vitrine Pro": ["Site 5 à 7 pages + textes","Référencement local","Prise de rendez-vous ou devis","Formation 2 h"],
+    "Boutique Connectée": ["Boutique 50 produits","Paiement sécurisé","Livraison et retrait","Formation 3 h"]
+  };
+  var state = {pack:"Présence Locale", total:1500, opt:false};
+  function calc(){
+    var p = document.querySelector('input[name="pack"]:checked');
+    var o = document.getElementById('opt').checked;
+    var total = parseInt(p.value,10) + (o ? 600 : 0);
+    var aid = Math.min(Math.round(total*0.8), 10000);
+    state = {pack:p.dataset.name, total:total, opt:o, rac: total-aid};
+    document.getElementById('r-name').textContent = p.dataset.name + (o ? ' + Sérénité' : '');
+    document.getElementById('r-total').textContent = fmt(total);
+    document.getElementById('r-aid').textContent = '− ' + fmt(aid);
+    document.getElementById('r-rac').textContent = fmt(total-aid);
+    var items = contents[p.dataset.name].slice();
+    if(o) items.push('Sauvegarde et sécurité 12 mois');
+    document.getElementById('r-list').innerHTML = items.map(function(t){return '<li>'+t+'</li>';}).join('');
+    renderVerdict();
+  }
+  document.querySelectorAll('input[name="pack"], #opt').forEach(function(el){ el.addEventListener('change', calc); });
+
+  var reasons = {
+    q1:"Le Chèque TIC est réservé aux entreprises installées en Guadeloupe.",
+    q2:"Il faut au moins un an d'immatriculation. Nous pouvons préparer votre projet pour cette date.",
+    q3:"Les attestations fiscale et sociale à jour sont obligatoires. Régularisez d'abord, puis revenez vers nous.",
+    q4:"Le dispositif est limité à un chèque par entreprise et par an.",
+    q5:"Un projet déjà commandé ou payé ne peut en général plus être financé. Parlons-en pour voir ce qui reste possible."
+  };
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var draft = {nom:'', ent:''};
+  function renderVerdict(){
+    var v = document.getElementById('verdict');
+    var ans = {}, missing = 0;
+    ['q1','q2','q3','q4','q5'].forEach(function(k){
+      var c = document.querySelector('input[name="'+k+'"]:checked');
+      if(!c) missing++; else ans[k] = c.value;
+    });
+    if(missing){ v.className='verdict wait'; v.innerHTML='<p>Répondez aux 5 questions pour voir votre résultat ('+(5-missing)+'/5).</p>'; return; }
+    var fails = Object.keys(ans).filter(function(k){ return ans[k]==='0'; });
+    if(fails.length){
+      v.className='verdict no';
+      v.innerHTML='<h3>Pas encore, mais parlons-en.</h3>'+fails.map(function(k){return '<p>'+reasons[k]+'</p>';}).join('')+
+        '<div class="cta-row" style="margin-top:4px"><a class="btn btn-wa" target="_blank" rel="noopener" href="'+waLink('Bonjour Rose-Marie, j\'ai fait le test Chèque TIC et certains critères ne sont pas remplis. Pouvez-vous me conseiller ?')+'">Demander conseil sur WhatsApp</a></div>';
+      return;
+    }
+    v.className='verdict ok';
+    v.innerHTML='<h3>Votre entreprise remplit les conditions de base.</h3>'+
+      '<p>Pack <strong>'+esc(state.pack)+(state.opt?' + Sérénité':'')+'</strong> : '+fmt(state.total)+', votre reste à charge estimé est de <strong>'+fmt(state.rac)+'</strong>.</p>'+
+      '<div class="fields"><label for="f-nom">Votre prénom<input id="f-nom" type="text" autocomplete="given-name" value="'+esc(draft.nom)+'"></label><label for="f-ent">Votre entreprise<input id="f-ent" type="text" autocomplete="organization" value="'+esc(draft.ent)+'"></label></div>'+
+      '<div class="cta-row" style="margin-top:4px"><a class="btn btn-main" href="https://tidycal.com/web-entreprises/bilan-digital" target="_blank" rel="noopener">Réserver mon bilan offert</a><a class="btn btn-wa" id="wa-ok" target="_blank" rel="noopener" href="#">Envoyer sur WhatsApp</a></div>';
+    var upd = function(){
+      draft.nom = document.getElementById('f-nom').value.trim();
+      draft.ent = document.getElementById('f-ent').value.trim();
+      var msg = 'Bonjour Rose-Marie, '+(draft.nom?'je suis '+draft.nom:'je')+(draft.ent?' ('+draft.ent+')':'')+
+        '. J\'ai fait le test Chèque TIC : les 5 critères sont remplis. Je suis intéressé(e) par le pack '+state.pack+(state.opt?' + option Sérénité':'')+
+        ' ('+fmt(state.total)+', reste à charge estimé '+fmt(state.rac)+'). Quand pouvons-nous échanger ?';
+      document.getElementById('wa-ok').href = waLink(msg);
+    };
+    document.getElementById('f-nom').addEventListener('input', upd);
+    document.getElementById('f-ent').addEventListener('input', upd);
+    upd();
+  }
+  function waLink(msg){ return 'https://wa.me/590691252269?text=' + encodeURIComponent(msg); }
+  document.getElementById('quiz').addEventListener('change', function(e){ if(e.target.name && e.target.name.charAt(0)==='q') renderVerdict(); });
+  document.getElementById('quiz').addEventListener('submit', function(e){ e.preventDefault(); });
+  document.getElementById('wa-main').href = waLink('Bonjour Rose-Marie, je souhaite des informations sur le Chèque TIC pour mon site internet.');
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = b.dataset.copy;
+      var done = function(){ b.textContent='Copié'; setTimeout(function(){b.textContent='Copier';},1600); };
+      try{ navigator.clipboard.writeText(t).then(done, function(){ b.textContent=t; }); }catch(err){ b.textContent=t; }
+    });
+  });
+  calc();
+})();
+</script>
+</body></html>
