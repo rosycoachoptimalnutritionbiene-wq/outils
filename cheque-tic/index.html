@@ -221,7 +221,6 @@ html{scroll-behavior:smooth}
       <label class="pack" for="p1"><input type="radio" name="pack" id="p1" value="1500" data-name="Présence Locale" checked><div><div class="name">Présence Locale</div><div class="who">Artisans, indépendants, services</div></div><div class="price num">1 500 €</div></label>
       <label class="pack" for="p2"><input type="radio" name="pack" id="p2" value="2500" data-name="Vitrine Pro"><div><div class="name">Vitrine Pro</div><div class="who">Professions libérales, gîtes, restaurants</div></div><div class="price num">2 500 €</div></label>
       <label class="pack" for="p3"><input type="radio" name="pack" id="p3" value="4500" data-name="Boutique Connectée"><div><div class="name">Boutique Connectée</div><div class="who">Commerçants, créateurs, concept stores</div></div><div class="price num">4 500 €</div></label>
-      <label class="opt" for="opt"><input type="checkbox" id="opt" value="600"><div><div class="name" style="font-weight:700">+ Option Sérénité · 600 €</div><div class="who" style="font-size:14px;color:var(--muted)">Sauvegarde automatique 12 mois, protection du site, mini-audit sécurité, formation 1 h. Aussi financée à 80 %.</div></div></label>
     </div>
     <div class="result" aria-live="polite">
       <p class="eyebrow" id="r-name">Présence Locale</p>
@@ -283,7 +282,7 @@ html{scroll-behavior:smooth}
       <span class="tag">Boutique Connectée</span>
       <div class="rac num">900 €<small> pour vous</small></div>
       <div class="full num">Prix 4 500 € · aide 3 600 €</div>
-      <ul><li>Boutique jusqu'à 50 produits</li><li>Paiement sécurisé</li><li>Livraison Guadeloupe et retrait en magasin</li><li>Domaine, hébergement, SSL 1 an</li><li>Formation 3 h</li></ul>
+      <ul><li>Boutique de 50 produits et plus</li><li>5 produits mis en ligne par nos soins + tutoriel vidéo pour ajouter les suivants</li><li>Paiement sécurisé</li><li>Livraison Guadeloupe et retrait en magasin</li><li>Domaine, hébergement, SSL 1 an</li><li>Formation 3 h</li></ul>
     </article>
   </div>
 </section>
@@ -351,12 +350,12 @@ html{scroll-behavior:smooth}
   var contents = {
     "Présence Locale": ["Site 3 pages mobile","Domaine, hébergement, SSL 1 an","Fiche Google optimisée","Formation 1 h"],
     "Vitrine Pro": ["Site 5 à 7 pages + textes","Référencement local","Prise de rendez-vous ou devis","Formation 2 h"],
-    "Boutique Connectée": ["Boutique 50 produits","Paiement sécurisé","Livraison et retrait","Formation 3 h"]
+    "Boutique Connectée": ["Boutique 50 produits et +, 5 intégrés + tutoriel","Paiement sécurisé","Livraison et retrait","Formation 3 h"]
   };
   var state = {pack:"Présence Locale", total:1500, opt:false};
   function calc(){
     var p = document.querySelector('input[name="pack"]:checked');
-    var o = document.getElementById('opt').checked;
+    var oe = document.getElementById('opt'); var o = oe ? oe.checked : false;
     var total = parseInt(p.value,10) + (o ? 600 : 0);
     var aid = Math.min(Math.round(total*0.8), 10000);
     state = {pack:p.dataset.name, total:total, opt:o, rac: total-aid};
@@ -369,7 +368,7 @@ html{scroll-behavior:smooth}
     document.getElementById('r-list').innerHTML = items.map(function(t){return '<li>'+t+'</li>';}).join('');
     renderVerdict();
   }
-  document.querySelectorAll('input[name="pack"], #opt').forEach(function(el){ el.addEventListener('change', calc); });
+  document.querySelectorAll('input[name="pack"]').forEach(function(el){ el.addEventListener('change', calc); });
 
   var reasons = {
     q1:"Le Chèque TIC est réservé aux entreprises installées en Guadeloupe.",
