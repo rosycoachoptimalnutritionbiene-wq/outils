@@ -1,138 +1,228 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rose-Marie SOUDAIN — Outils et réalisations</title>
-<meta name="description" content="Assistanat administratif à distance et création d'outils sur mesure — Guadeloupe. Organismes de formation, associations financées, TPE.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --navy:#12355B; --navy-d:#0A2039; --accent:#1F6FB2; --accent-l:#4A9EE2;
-  --paper:#F6F8FB; --ink:#1B2733; --muted:#5B6B7C; --line:#D9E3ED;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
-a{color:inherit}
-
-header{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-d) 100%);color:#fff;
-  padding:clamp(48px,9vw,96px) clamp(20px,5vw,40px) clamp(40px,7vw,72px)}
-.wrap{max-width:960px;margin:0 auto}
-.kicker{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-l);margin-bottom:14px}
-h1{font-size:clamp(1.9rem,5.2vw,3rem);line-height:1.12;font-weight:800;letter-spacing:-.02em;max-width:20ch}
-.lead{margin-top:18px;font-size:clamp(1rem,2.4vw,1.15rem);color:#C6D8E9;max-width:56ch}
-.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
-.chip{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-size:.82rem;color:#E3EDF6}
-
-main{max-width:960px;margin:0 auto;padding:clamp(36px,6vw,64px) clamp(20px,5vw,40px) 80px}
-h2{font-size:1.35rem;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-.01em}
-.sub{color:var(--muted);margin-bottom:26px;max-width:60ch}
-section{margin-bottom:clamp(40px,7vw,64px)}
-
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;
-  display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s,border-color .18s}
-.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(18,53,91,.12);border-color:var(--accent-l)}
-.tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
-.card h3{font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.3}
-.card p{font-size:.92rem;color:var(--muted);flex:1}
-.card .go{margin-top:16px;font-size:.88rem;font-weight:600;color:var(--accent)}
-.card .go[data-soon]{color:var(--muted)}
-a.card{text-decoration:none}
-
-.cta{background:var(--navy);color:#fff;border-radius:16px;padding:clamp(26px,5vw,40px);text-align:center}
-.cta h2{color:#fff}
-.cta p{color:#C6D8E9;max-width:52ch;margin:10px auto 22px}
-.btn{display:inline-block;background:var(--accent-l);color:var(--navy-d);font-weight:800;
-  text-decoration:none;padding:13px 26px;border-radius:999px;font-size:.95rem}
-.btn:hover{background:#fff}
-
-footer{border-top:1px solid var(--line);padding:28px 20px 60px;text-align:center;color:var(--muted);font-size:.85rem}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fineblock Guadeloupe - Pouvoir d'Achat Responsable x Web-Entreprises</title>
+    <style>
+        :root {
+            --brand-purple: #7a22a1;
+            --brand-pink: #e04b7b;
+            --brand-dark: #1a1520;
+            --brand-green: #00d27a;
+            --light-bg: #fcfaff;
+            --card-bg: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { color: var(--brand-dark); background-color: var(--light-bg); line-height: 1.6; }
+        header {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-pink));
+            color: white; text-align: center; padding: 3rem 1rem;
+            box-shadow: 0 4px 15px rgba(122, 34, 161, 0.2);
+        }
+        .partner-logo-container { margin-bottom: 1.5rem; }
+        .partner-logo {
+            background: white; padding: 0.5rem 1.5rem; border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-flex; align-items: center;
+            gap: 10px; font-weight: bold; color: var(--brand-dark); font-size: 1.1rem;
+        }
+        .partner-logo span { color: var(--brand-purple); }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        header p { font-size: 1.2rem; opacity: 0.95; max-width: 600px; margin: 0 auto; }
+        .toggle-container {
+            display: flex; justify-content: center; margin: 2.5rem auto; max-width: 450px;
+            background: #f0e6f5; padding: 0.4rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .toggle-btn {
+            flex: 1; border: none; background: none; padding: 0.9rem; font-size: 1rem; font-weight: bold;
+            border-radius: 50px; cursor: pointer; transition: all 0.3s ease; color: var(--brand-purple);
+        }
+        .toggle-btn.active {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-pink));
+            color: white; box-shadow: 0 4px 10px rgba(224, 75, 123, 0.3);
+        }
+        main { max-width: 800px; margin: 0 auto; padding: 0 1rem 4rem 1rem; }
+        .section-card {
+            background: var(--card-bg); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(122, 34, 161, 0.05); border-top: 4px solid var(--brand-purple);
+        }
+        .section-card h2 { margin-bottom: 0.8rem; line-height: 1.3; }
+        .video-placeholder {
+            background: #f3ecf7; width: 100%; aspect-ratio: 16/9; border-radius: 12px; display: flex;
+            align-items: center; justify-content: center; margin: 1.5rem 0; font-weight: bold;
+            color: var(--brand-purple); border: 2px dashed var(--brand-pink); text-align: center; padding: 1rem;
+        }
+        .badge-box {
+            background-color: #fdf5f8; border: 1px solid #f9dbe6; padding: 1.2rem; border-radius: 10px;
+            margin: 1.5rem 0; display: flex; align-items: center; gap: 1.2rem;
+        }
+        .badge-icon { font-size: 2.2rem; }
+        .affiliate-badge {
+            display: inline-block; background-color: #f1f8f5; color: #146c43; border: 1px solid #a3cfbb;
+            padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem;
+        }
+        form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        label { font-weight: 600; color: var(--brand-purple); }
+        input {
+            padding: 0.9rem; border: 1px solid #d3c2db; border-radius: 8px; font-size: 1rem;
+            background-color: #fff; transition: border-color 0.2s;
+        }
+        input:focus { outline: none; border-color: var(--brand-purple); box-shadow: 0 0 0 3px rgba(122, 34, 161, 0.1); }
+        .cta-submit {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-pink)); color: white; border: none;
+            padding: 1.1rem; font-size: 1.2rem; font-weight: bold; border-radius: 8px; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s; margin-top: 0.5rem; box-shadow: 0 4px 15px rgba(224, 75, 123, 0.2);
+        }
+        .cta-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224, 75, 123, 0.3); }
+        .cta-direct-link {
+            display: block; text-align: center; background-color: var(--brand-green); color: var(--brand-dark);
+            text-decoration: none; padding: 1.1rem; font-size: 1.2rem; font-weight: bold; border-radius: 8px;
+            margin-top: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(0, 210, 122, 0.2);
+        }
+        .cta-direct-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 210, 122, 0.3); }
+        .form-ok {
+            background: #f1f8f5; border: 1px solid #a3cfbb; color: #146c43; padding: 1rem;
+            border-radius: 8px; font-weight: 600; margin-top: 1rem;
+        }
+        .hidden { display: none; }
+        footer {
+            text-align: center; padding: 3rem 2rem; font-size: 0.9rem; color: #6c5a75;
+            background: #f3ecf7; border-top: 1px solid #e6daed;
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            header p { font-size: 1rem; }
+            .section-card { padding: 1.5rem; }
+            .toggle-container { margin: 1.5rem 1rem; }
+            .toggle-btn { font-size: 0.9rem; padding: 0.8rem 0.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <div class="kicker">Guadeloupe · à distance</div>
-    <h1>J'assiste les structures qui doivent rendre des comptes.</h1>
-    <p class="lead">Secrétariat de direction, suivi administratif et dossiers financés — pour les organismes de formation, les associations subventionnées et les TPE. Et les outils sur mesure qui vont avec.</p>
-    <div class="meta">
-      <span class="chip">18 ans d'appui de direction</span>
-      <span class="chip">Dossiers FSE &amp; Qualiopi</span>
-      <span class="chip">Accompagnatrice VAE certifiée</span>
-      <span class="chip">FR · EN · ES</span>
+    <header>
+        <div class="partner-logo-container">
+            <div class="partner-logo">
+                <svg width="24" height="24" viewBox="0 0 100 100" style="vertical-align: middle;" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e04b7b;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#7a22a1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="100" height="100" rx="25" fill="url(#grad)" />
+                    <path d="M25 70 L40 35 L50 50 L60 35 L75 70" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M65 25 L80 25 L80 40" fill="none" stroke="#00d27a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M55 50 L80 25" fill="none" stroke="#00d27a" stroke-width="10" stroke-linecap="round"/>
+                </svg>
+                Web-Entreprises<span>.Com</span>
+            </div>
+        </div>
+        <h1>IMPACT POUVOIR D'ACHAT RESPONSABLE</h1>
+        <p>Propulsé par Fineblock Guadeloupe — Votre allié visibilité, pouvoir d'achat et fidélité de proximité</p>
+    </header>
+
+    <div class="toggle-container">
+        <button class="toggle-btn active" id="btn-b2c" onclick="switchTab('b2c')">Je suis Particulier</button>
+        <button class="toggle-btn" id="btn-b2b" onclick="switchTab('b2b')">Je suis Commerçant</button>
     </div>
-  </div>
-</header>
 
-<main>
+    <main>
+        <!-- CONTENU PARTICULIERS (B2C) -->
+        <div id="content-b2c">
+            <div class="section-card">
+                <div class="affiliate-badge">Référent Officiel Fineblock : ID 217</div>
+                <h2>Récupérez de l'argent sur vos dépenses du quotidien 💰</h2>
+                <p>Marre de subir la vie chère ? Rejoignez l'application Fineblock. Cumulez des euros réels sur chaque achat et soutenez activement notre territoire.</p>
+                <div class="video-placeholder">🎬 [Vidéo de Présentation Fineblock Particuliers]</div>
+                <div class="badge-box">
+                    <div class="badge-icon">🍃</div>
+                    <div>
+                        <strong>Bonus Circuits Courts &amp; Solidarité</strong><br>
+                        Cagnottez plus chez les producteurs locaux et financez des associations guadeloupéennes via l'arrondi solidaire.
+                    </div>
+                </div>
+            </div>
 
-  <section>
-    <h2>Outils en ligne</h2>
-    <p class="sub">Des applications web construites sur mesure, utilisables directement depuis un navigateur. Aucun abonnement, aucune installation.</p>
-    <div class="grid">
+            <div class="section-card">
+                <h2>Inscription instantanée via notre lien d'affiliation direct 📲</h2>
+                <p>Pour activer votre compte utilisateur Fineblock immédiatement, utilisez notre accès d'enregistrement direct :</p>
+                <!-- Lien d'affiliation Fineblock personnel (ID 217) -->
+                <a href="http://www.fineblock.eu/fr/account/register/217" class="cta-direct-link" target="_blank" rel="noopener">👉 Ouvrir mon compte utilisateur gratuit</a>
+            </div>
+        </div>
 
-      <a class="card" href="flyers/">
-        <div class="tag">Support imprimable</div>
-        <h3>Générateur de flyers A5</h3>
-        <p>Deux modèles d'affiche événementielle. Les dates, lieux et contacts se modifient directement dans la page, puis le flyer s'imprime au format A5.</p>
-        <div class="go">Ouvrir l'outil →</div>
-      </a>
+        <!-- CONTENU COMMERÇANTS (B2B) -->
+        <div id="content-b2b" class="hidden">
+            <div class="section-card">
+                <div class="affiliate-badge">Accompagnement Agence : ID 217</div>
+                <h2>Captez et fidélisez une clientèle locale ciblée 🎯</h2>
+                <p>Devenez le point d'ancrage du pouvoir d'achat dans votre commune. Attirez du flux de clients sur vos créneaux spécifiques (heures creuses, offres flash) sans investissement technologique lourd.</p>
+                <div class="video-placeholder">🎬 [Vidéo Explicative Partenaires &amp; Preuve Sociale]</div>
+                <div class="badge-box">
+                    <div class="badge-icon">🍦</div>
+                    <div>
+                        <strong>Comme "Chez Ma Boule" à Bouillante</strong><br>
+                        Mettez en avant vos initiatives responsables (zéro plastique, approvisionnement local) et obtenez l'éligibilité au badge vert Kaz Éco.
+                    </div>
+                </div>
+            </div>
 
-      <a class="card" href="https://rosycoachoptimalnutritionbiene-wq.github.io/Catalogue/">
-        <div class="tag">Tunnel de vente</div>
-        <h3>Catalogue de lots par objectif</h3>
-        <p>Un catalogue en ligne organisé par objectif client plutôt que par produit, avec parcours de commande intégré.</p>
-        <div class="go">Voir le catalogue →</div>
-      </a>
+            <div class="section-card">
+                <h2>Demandez votre audit d'éligibilité gratuit (Édition 2026) 📝</h2>
+                <p>Enregistrez vos coordonnées ci-dessous. Notre équipe d'accompagnement Web-Entreprises.Com prendra directement contact pour configurer votre offre.</p>
+                <form id="form-b2b" onsubmit="envoyerDemande(event)">
+                    <div class="form-group">
+                        <label for="etablissement">Nom de l'Établissement / Enseigne</label>
+                        <input type="text" id="etablissement" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="responsable">Nom du Responsable</label>
+                        <input type="text" id="responsable" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Téléphone Direct</label>
+                        <input type="tel" id="telephone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="commune">Commune d'implantation</label>
+                        <input type="text" id="commune" required>
+                    </div>
+                    <button type="submit" class="cta-submit">Valider ma demande d'intégration</button>
+                </form>
+                <div id="form-ok" class="form-ok hidden">Merci ! Votre demande s'ouvre dans WhatsApp : appuyez sur « Envoyer » pour la transmettre à notre équipe.</div>
+            </div>
+        </div>
+    </main>
 
-      <div class="card">
-        <div class="tag">Pilotage</div>
-        <h3>Tableau de bord d'activité</h3>
-        <p>Suivi des contacts, des relances et des conversions, avec indicateurs consolidés pour la direction.</p>
-        <div class="go" data-soon>Publication en cours</div>
-      </div>
+    <footer>
+        <p>© 2026 Web-Entreprises.Com | Partenaire d'Accompagnement Écosystème Fineblock</p>
+        <p>SIRET 940 169 519 00011 | Agence Conseil en Communication &amp; Projets d'Entreprise</p>
+    </footer>
 
-      <div class="card">
-        <div class="tag">Suivi de dossiers</div>
-        <h3>Suivi des conventions et justificatifs</h3>
-        <p>Cycle annuel de la convention, cycle individuel du bénéficiaire, cycle de renouvellement d'habilitation : trois échéanciers tenus au même endroit.</p>
-        <div class="go" data-soon>Publication en cours</div>
-      </div>
+    <script>
+        function switchTab(type) {
+            const b2c = type === 'b2c';
+            document.getElementById('btn-b2c').className = b2c ? 'toggle-btn active' : 'toggle-btn';
+            document.getElementById('btn-b2b').className = b2c ? 'toggle-btn' : 'toggle-btn active';
+            document.getElementById('content-b2c').className = b2c ? '' : 'hidden';
+            document.getElementById('content-b2b').className = b2c ? 'hidden' : '';
+        }
 
-    </div>
-  </section>
-
-  <section>
-    <h2>Ce que je prends en charge</h2>
-    <p class="sub">À distance, au volume dont vous avez besoin : dix, vingt ou trente-cinq heures par mois, ou des missions ponctuelles.</p>
-    <div class="grid">
-      <div class="card"><div class="tag">01</div><h3>Secrétariat de direction</h3><p>Agenda, courriers, préparation des réunions, comptes rendus et procès-verbaux.</p></div>
-      <div class="card"><div class="tag">02</div><h3>Suivi administratif</h3><p>Dossiers clients, classement, archivage numérique, conformité documentaire.</p></div>
-      <div class="card"><div class="tag">03</div><h3>Gestion commerciale</h3><p>Devis, factures, relances, suivi des règlements, commandes et fournisseurs.</p></div>
-      <div class="card"><div class="tag">04</div><h3>Dossiers de financement</h3><p>Montage, pièces justificatives, bilans, préparation aux contrôles.</p></div>
-      <div class="card"><div class="tag">05</div><h3>Ressources humaines</h3><p>Contrats, plannings, plan de formation, dossiers OPCO.</p></div>
-      <div class="card"><div class="tag">06</div><h3>Communication</h3><p>Site internet, réseaux sociaux, notes internes, organisation d'événements.</p></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="cta">
-      <h2>Un échange de 30 minutes suffit</h2>
-      <p>Pour savoir si je peux vous aider, et à quel volume. Sans engagement, et le premier mois est un essai.</p>
-      <a class="btn" href="mailto:soudainrosemarie782@gmail.com?subject=Demande%20d'information%20-%20assistanat%20administratif">Me contacter</a>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Rose-Marie SOUDAIN · Petit-Bourg, Guadeloupe · 0691 25 22 69<br>
-  SIRET 839 447 109 00019
-</footer>
-
+        // Envoi de la demande commerçant vers le WhatsApp de l'agence (aucun serveur nécessaire)
+        function envoyerDemande(e) {
+            e.preventDefault();
+            const v = id => document.getElementById(id).value.trim();
+            const message =
+                "Bonjour Web-Entreprises.Com, je souhaite mon audit d'éligibilité gratuit (Édition 2026).\n" +
+                "Établissement : " + v('etablissement') + "\n" +
+                "Responsable : " + v('responsable') + "\n" +
+                "Téléphone : " + v('telephone') + "\n" +
+                "Commune : " + v('commune');
+            window.open("https://wa.me/590691252269?text=" + encodeURIComponent(message), "_blank");
+            document.getElementById('form-ok').className = 'form-ok';
+        }
+    </script>
 </body>
 </html>
