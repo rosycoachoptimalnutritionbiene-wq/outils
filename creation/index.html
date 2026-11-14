@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Questionnaire Projet en création — Agence Web-Entreprises.Com</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--violet:#5b2a86;--fuchsia:#c2187a;--orange:#f08a24;--vert:#2e9e5b;--ink:#231a2e;--muted:#6b6275;--bg:#f7f4fa;--line:#e3dcee}
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#1d1027,#3b1b57);color:#fff;padding:28px 18px}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+.brand{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+h1{font-size:24px;margin:8px 0 6px}
+header p{margin:0;opacity:.88;font-size:14px;line-height:1.5}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0}
+.box h2{margin:0 0 4px;font-size:17px;color:var(--violet)}
+.box .sub{margin:0 0 12px;font-size:13px;color:var(--muted)}
+label{display:block;font-size:14px;font-weight:600;margin:14px 0 6px}
+label small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=tel],input[type=email],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;font-size:14px;background:#fff}
+textarea{min-height:74px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{margin:0;font-weight:500;font-size:13px;border:1px solid var(--line);border-radius:20px;padding:6px 12px;cursor:pointer;background:#fff}
+.chips input{margin-right:5px;accent-color:var(--fuchsia)}
+.tabs{display:flex;gap:8px;margin-top:18px}
+.tabs button{flex:1;padding:11px;border-radius:10px;border:1px solid var(--line);background:#fff;font:inherit;font-weight:600;cursor:pointer;color:var(--muted)}
+.tabs button.on{background:var(--violet);color:#fff;border-color:var(--violet)}
+.proj{display:none}.proj.on{display:block}
+.send{display:flex;flex-direction:column;gap:10px}
+.send button{padding:14px;border-radius:11px;border:0;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.wa{background:var(--vert);color:#fff}
+.cp{background:#fff;color:var(--violet);border:1px solid var(--violet)!important}
+.note{font-size:12px;color:var(--muted);line-height:1.5}
+.err{color:#a3123f;font-size:13px;display:none}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:.25s;pointer-events:none}
+.toast.on{opacity:1}
+footer{text-align:center;font-size:12px;color:var(--muted);padding:6px 16px 30px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand">Agence Web-Entreprises.Com · Création de projets</div>
+  <h1>Votre projet de création d'entreprise</h1>
+  <p>Ce questionnaire prépare notre premier échange. Comptez environ 15 minutes. Si vous avez deux projets, remplissez un onglet pour chacun. Répondez simplement : il n'y a pas de mauvaise réponse.</p>
+</div></header>
+
+<main class="wrap">
+<form id="f" novalidate>
+ <div class="box">
+  <h2>Vous</h2>
+  <label>Prénom et nom *</label><input type="text" name="Nom" required>
+  <label>Téléphone / WhatsApp *</label><input type="tel" name="Téléphone" required>
+  <label>E-mail</label><input type="email" name="E-mail">
+  <label>Commune</label><input type="text" name="Commune">
+  <label>Votre situation actuelle</label>
+  <select name="Situation"><option value="">— Choisir —</option><option>Salarié(e)</option><option>Demandeur d'emploi</option><option>Étudiant(e)</option><option>Déjà à mon compte</option><option>Autre</option></select>
+  <label>Combien de temps pouvez-vous consacrer à vos projets ? </label>
+  <select name="Temps disponible"><option value="">— Choisir —</option><option>Moins de 5 h par semaine</option><option>5 à 15 h par semaine</option><option>Plus de 15 h par semaine</option><option>Temps plein</option></select>
+ </div>
+
+ <div class="tabs"><button type="button" class="on" data-p="1">Projet 1</button><button type="button" data-p="2">Projet 2</button></div>
+ <div id="projects"></div>
+
+ <div class="box">
+  <h2>Pour finir</h2>
+  <label>Lequel de vos projets vous tient le plus à cœur, et pourquoi ?</label><textarea name="Priorité personnelle"></textarea>
+  <label>Qu'attendez-vous de notre accompagnement ?</label>
+  <div class="chips" data-name="Attentes">
+   <label><input type="checkbox" value="Clarifier mon idée">Clarifier mon idée</label>
+   <label><input type="checkbox" value="Étude de marché">Étude de marché</label>
+   <label><input type="checkbox" value="Business plan / prévisionnel">Business plan / prévisionnel</label>
+   <label><input type="checkbox" value="Trouver des financements">Trouver des financements</label>
+   <label><input type="checkbox" value="Choisir un statut juridique">Choisir un statut juridique</label>
+   <label><input type="checkbox" value="Formalités de création">Formalités de création</label>
+   <label><input type="checkbox" value="Logo, site, communication">Logo, site, communication</label>
+   <label><input type="checkbox" value="Trouver mes premiers clients">Trouver mes premiers clients</label>
+  </div>
+  <label>Vos disponibilités pour un échange <small>(jours, horaires)</small></label><input type="text" name="Disponibilités">
+ </div>
+
+ <div class="box send">
+  <p class="err" id="err">Merci d'indiquer au moins votre nom, votre téléphone et le nom ou l'idée du Projet 1.</p>
+  <button type="button" class="wa" id="wa">Envoyer mes réponses à Coach Rosy sur WhatsApp</button>
+  <button type="button" class="cp" id="cp">Copier mes réponses</button>
+  <p class="note">WhatsApp s'ouvre avec vos réponses déjà écrites : il vous reste à appuyer sur « Envoyer ». Si WhatsApp ne s'ouvre pas, copiez vos réponses et collez-les dans un message au +590 691 25 22 69 ou à contact@web-entreprises.com.</p>
+ </div>
+</form>
+</main>
+<footer>Rose-Marie Soudain — Agence Web-Entreprises.Com · Roujol, 97170 Petit-Bourg · 0590 55 35 14 · +590 691 25 22 69 · contact@web-entreprises.com<br>Vos réponses ne servent qu'à préparer votre accompagnement. Elles ne sont ni stockées sur cette page ni transmises à des tiers.</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const WA_NUMBER="590691252269";
+const Q=[
+ {h:"L'idée",items:[
+  {n:"Nom ou idée du projet",t:"text",req:true},
+  {n:"Décrivez votre projet en quelques phrases",t:"area"},
+  {n:"Quel problème résout-il, ou quel besoin couvre-t-il ?",t:"area"},
+  {n:"Où en êtes-vous ?",t:"select",o:["Simple idée","Idée travaillée (recherches, notes)","Premiers tests / premiers clients","Prêt à lancer"]}
+ ]},
+ {h:"Le marché",items:[
+  {n:"Qui sont vos clients ? (particuliers, entreprises, touristes…)",t:"area"},
+  {n:"Zone visée",t:"chips",o:["Ma commune","Guadeloupe","Antilles-Guyane","France / Europe","International / en ligne"]},
+  {n:"Qui fait déjà quelque chose de proche ? Qu'est-ce qui vous distingue ?",t:"area"}
+ ]},
+ {h:"Le modèle économique",items:[
+  {n:"Que vendez-vous exactement, et à quel prix environ ?",t:"area"},
+  {n:"Comment allez-vous trouver vos clients ?",t:"area"},
+  {n:"Ce projet doit-il vous faire vivre ?",t:"select",o:["Oui, c'est mon revenu principal","Complément de revenu au début","Pas encore décidé"]}
+ ]},
+ {h:"Les moyens",items:[
+  {n:"Budget de démarrage estimé",t:"select",o:["Moins de 2 000 €","2 000 à 10 000 €","10 000 à 50 000 €","Plus de 50 000 €","Je ne sais pas encore"]},
+  {n:"Apport personnel disponible",t:"select",o:["Aucun","Moins de 2 000 €","2 000 à 10 000 €","Plus de 10 000 €"]},
+  {n:"Besoin d'un local, de matériel, de stock ?",t:"area"},
+  {n:"Seul(e) ou avec des associés ?",t:"select",o:["Seul(e)","Avec un ou plusieurs associés","Pas encore décidé"]},
+  {n:"Statut juridique envisagé",t:"select",o:["Je ne sais pas","Micro-entreprise","EI / EURL","SAS / SASU","Association","Autre"]}
+ ]},
+ {h:"Le calendrier",items:[
+  {n:"Date de lancement souhaitée",t:"text"},
+  {n:"Ce qui vous bloque aujourd'hui",t:"area"}
+ ]}
+];
+const wrap=document.getElementById("projects");
+function field(p,it,i){
+ const id=`p${p}_${i}`;const lab=`<label for="${id}">${it.n}${it.req&&p===1?" *":""}</label>`;
+ if(it.t==="text")return lab+`<input type="text" id="${id}" data-q="${it.n}">`;
+ if(it.t==="area")return lab+`<textarea id="${id}" data-q="${it.n}"></textarea>`;
+ if(it.t==="select")return lab+`<select id="${id}" data-q="${it.n}"><option value="">— Choisir —</option>${it.o.map(o=>`<option>${o}</option>`).join("")}</select>`;
+ if(it.t==="chips")return `<label>${it.n}</label><div class="chips" data-q="${it.n}">${it.o.map(o=>`<label><input type="checkbox" value="${o}">${o}</label>`).join("")}</div>`;
+}
+[1,2].forEach(p=>{
+ let k=0,h=`<div class="proj${p===1?" on":""}" data-proj="${p}">`;
+ Q.forEach(sec=>{h+=`<div class="box"><h2>Projet ${p} — ${sec.h}</h2>${p===2&&sec.h==="L'idée"?'<p class="sub">Laissez vide si vous n\'avez qu\'un projet.</p>':""}`;sec.items.forEach(it=>{h+=field(p,it,k++)});h+="</div>"});
+ wrap.insertAdjacentHTML("beforeend",h+"</div>");
+});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+ document.querySelectorAll(".proj").forEach(x=>x.classList.toggle("on",x.dataset.proj===b.dataset.p));
+ window.scrollTo({top:document.querySelector(".tabs").offsetTop-10,behavior:"smooth"});
+});
+function val(el){
+ if(el.classList.contains("chips"))return [...el.querySelectorAll("input:checked")].map(i=>i.value).join(", ");
+ return (el.value||"").trim();
+}
+function build(){
+ const f=document.getElementById("f");let out=["*Questionnaire Projet en création*",""];
+ ["Nom","Téléphone","E-mail","Commune","Situation","Temps disponible"].forEach(n=>{const v=(f.elements[n].value||"").trim();if(v)out.push(`${n} : ${v}`)});
+ document.querySelectorAll(".proj").forEach(pr=>{
+  const lines=[];pr.querySelectorAll("[data-q]").forEach(el=>{const v=val(el);if(v)lines.push(`• ${el.dataset.q} : ${v}`)});
+  if(lines.length){out.push("","*PROJET "+pr.dataset.proj+"*");out=out.concat(lines)}
+ });
+ const pp=f.elements["Priorité personnelle"].value.trim(),att=val(document.querySelector('[data-name="Attentes"]')),dis=f.elements["Disponibilités"].value.trim();
+ if(pp||att||dis){out.push("","*POUR FINIR*");if(pp)out.push("• Projet prioritaire : "+pp);if(att)out.push("• Attentes : "+att);if(dis)out.push("• Disponibilités : "+dis)}
+ return out.join("\n");
+}
+function ok(){
+ const f=document.getElementById("f");
+ const good=f.elements["Nom"].value.trim()&&f.elements["Téléphone"].value.trim()&&document.getElementById("p1_0").value.trim();
+ document.getElementById("err").style.display=good?"none":"block";return good;
+}
+const toast=document.getElementById("toast");
+function say(m){toast.textContent=m;toast.classList.add("on");setTimeout(()=>toast.classList.remove("on"),2200)}
+document.getElementById("wa").onclick=()=>{
+ if(!ok())return;
+ const a=document.createElement("a");a.href="https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(build());a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
+};
+document.getElementById("cp").onclick=()=>{
+ if(!ok())return;
+ navigator.clipboard.writeText(build()).then(()=>say("Réponses copiées ✔ — collez-les dans un message")).catch(()=>say("Copie refusée par le navigateur"));
+};
+</script>
+</body>
+</html>
